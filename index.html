@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    size: 30px;
+}
+.b{
+    background-color: #0000ff;
+    color: #000000;
+    text-align: center;
+    size: 30px;
+}
+.button{
+    background-color: #000000;
+    color: #ffffff;
+}
+.button-back{
+    text-align: center;
+    size: 30px;
+}
+.last-button{
+    display:none;
+}
+
+    </style>
+</head>
+<body>
+    <header class="a">
+        <h1>test_quiz</h1>
+    </header>
+    <section>
+        <h1 class="b">quiz</h1>
+        <h2 class='question button-back' id="question">ぎゃぎゃぎゃぎゃぎゃぎゃぎゃぁあああああああああああ！！！！</h2>
+    </section>
+    <section class="button-back">
+        <button id="button-01" class="button">a</button>
+        <button id="button-02" class="button">b</button>
+        <button id="button-03" class="button">c</button>
+        <button id="button-04" class="button">d</button>
+    </section>
+    <script>
+        //配列の定義
+const q = [
+    '100と202と3の400乗と4の300乗どっちが大きい？',
+    '5＊5＝？',
+    '本能寺の変があったのは何年？',
+    '今何問目？'
+]
+const a = [
+    '100',
+    '202',
+    '3の400乗',
+    '4の300乗',
+    '1',
+    '50',
+    '35',
+    '25',
+    '紀元前2938年',
+    '西暦555年',
+    '西暦1582年',
+    '西暦1584年',
+    '4問目',
+    '1問目',
+    '2問目',
+    '3問目'
+]
+const correct = [
+    a[2],
+    a[7],
+    a[10],
+    a[12]
+]
+//動的変数の定義
+let point = 0
+let question_Number = 0
+
+//初期処理
+document.getElementById('question').textContent = q[question_Number];
+document.getElementById('button-01').textContent = a[question_Number*4+0];
+document.getElementById('button-02').textContent = a[question_Number*4+1];
+document.getElementById('button-03').textContent = a[question_Number*4+2];
+document.getElementById('button-04').textContent = a[question_Number*4+3];
+
+const h = (hei)=>{
+    if(question_Number == 3){
+        if (a[hei+question_Number*4] == correct[question_Number]){
+            window.alert('正解')
+            point += 1;
+        }
+        else{
+            window.alert('不正解')
+        }
+        document.getElementById('button-01').style.display ="none";
+        document.getElementById('button-02').style.display ="none";
+        document.getElementById('button-03').style.display ="none";
+        document.getElementById('button-04').style.display ="none";
+        document.getElementById('question').textContent = `'これで終わりです。あなたの点数は${point}点です。'`;
+        console.log('question_Number = 3')
+    }else{
+        if (a[hei+question_Number*4] == correct[question_Number]){
+            window.alert('正解')
+            point += 1;
+        }
+        else{
+            window.alert('不正解')
+        }
+        question_Number += 1;
+        document.getElementById('question').textContent = q[question_Number];
+        document.getElementById('button-01').textContent = a[question_Number*4+0];
+        document.getElementById('button-02').textContent = a[question_Number*4+1];
+        document.getElementById('button-03').textContent = a[question_Number*4+2];
+        document.getElementById('button-04').textContent = a[question_Number*4+3];
+    }
+}
+document.getElementById('button-01').addEventListener('click',()=>{h(0);})
+document.getElementById('button-02').addEventListener('click',()=>{h(1);})
+document.getElementById('button-03').addEventListener('click',()=>{h(2);})
+document.getElementById('button-04').addEventListener('click',()=>{h(3);})
+    </script>
+</body>
+</html>
